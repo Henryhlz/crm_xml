@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置 sessionFactory :让spring接管sessionFactory的创建
+           用spring提供的一个sessionFactory：LocalSessionFactoryBean
+           创建sessionFactory有三部分必不可少的信息。三部分信息在hibernate主配置文件里有，
+           把hibernate主配置文件的位置注入进来。
+    -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--第一部分连接数据库用连接池-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--第二部分 hibernate的可选配置-->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+                <!-- hibernate所使用的的数据库方言  -->
+                <prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <!--  执行操作是否在控制台打印SQL -->
+                <prop key="show_sql">true</prop>
+                <!-- 是否对SQL进行格式化 -->
+                <prop key="format_sql">true</prop>
+                <!-- 指定自动生成数据表的策略:在运行数据库的时候hibernate会为我们在数据库自动生成数据表的策略 -->
+                <prop key="hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!--第三部分 指定所有的映射文件-->
+        <property name="mappingLocations" value="classpath*:config/hibernate/*/*.hbm.xml"></property>
+    </bean>
+    <!--  连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+</beans>

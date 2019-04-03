@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="customer" extends="mydefault" namespace="/customer">
+        <!--addCustomer.action 对应 name="*"，通配符*addCustomer，
+              method="{1}"里面的{1}就是代表addCustomer()方法,
+              这个addCustomer()方法存在于 CustomerAction中
+        -->
+        <action name="*" class="customerAction" method="{1}">
+            <result name="addCustomerPage" type="dispatcher">/jsp/customer/add.jsp</result>
+            <result name="findAllCustomer" type="dispatcher">/jsp/customer/list.jsp</result>
+            <result name="addCustomer" type="redirectAction">findAllCustomer</result>
+        </action>
+    </package>
+</struts>

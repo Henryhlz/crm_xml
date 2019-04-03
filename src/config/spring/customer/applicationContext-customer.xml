@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 配置customer模块相关bean的三层：action,service,dao -->
+    <!-- 配置customerAction 为多例模式 -->
+    <bean id="customerAction" class="com.hlz.crm.action.CustomerAction" scope="prototype">
+        <property name="customerService" ref="customerService"></property>
+    </bean>
+    <!-- 配置customerservice-->
+    <bean id="customerService" class="com.hlz.crm.service.impl.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao"></property>
+    </bean>
+    <!-- 配置customerDao-->
+    <bean id="customerDao" class="com.hlz.crm.dao.impl.CustomerDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+</beans>
