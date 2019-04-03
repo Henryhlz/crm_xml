@@ -11,8 +11,8 @@
               这个addCustomer()方法存在于 CustomerAction中
         -->
         <action name="*" class="customerAction" method="{1}">
-            <result name="addCustomerPage" type = "dispatcher">/jsp/customer/add.jsp</result>
-            <result name="findAllCustomer" type = "dispatcher">/jsp/customer/list.jsp</result>
+            <result name="addCustomerPage" type="dispatcher">/jsp/customer/add.jsp</result>
+            <result name="findAllCustomer" type="dispatcher">/jsp/customer/list.jsp</result>
             <result name="addCustomer" type="redirectAction">findAllCustomer</result>
         </action>
     </package>

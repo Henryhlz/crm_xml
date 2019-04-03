@@ -26,7 +26,7 @@
     <aop:config>
         <!-- 配置切入点表达式-->
         <aop:pointcut id="pt1" expression="execution(* com.hlz.crm.service.impl.*.*(..))"></aop:pointcut>
-         <!--建立切入点表达式和事务通知的关联-->
+        <!--建立切入点表达式和事务通知的关联-->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"></aop:advisor>
     </aop:config>
 </beans>

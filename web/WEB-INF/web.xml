@@ -21,11 +21,12 @@
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
-        <!-- 手动引入spring的 struts.xml 的位置-->
+        <!-- 手动引入struts主配置文件 struts.xml 的位置-->
         <init-param>
             <param-name>config</param-name>
             <param-value>struts-default.xml,struts-plugin.xml,config/struts/struts.xml</param-value>
         </init-param>
+        <!--自动扫描加载Struts2其他配置文件的工具类-->
         <init-param>
             <param-name>configProviders</param-name>
             <param-value>com.hlz.framework.struts2filter.CutomConfigurationProvider</param-value>
